@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Recipes.css'
-import RecipesList from './components/RecipeList'
-import superagent from 'superagent'
+import RecipesList from './components/RecipesList'
+const request = require('superagent');
 
 class Recipes extends Component {
   constructor () {
@@ -13,7 +13,7 @@ class Recipes extends Component {
   }
 
   componentDidMount () {
-    superagent.request.get('http://localhost:3001/recipes').end((error,response) =>{ 
+    request.get('http://localhost:3001/recipes').end((error,response) =>{ 
       if (!error) {
         this.setState({ recipes: response.body })
       }

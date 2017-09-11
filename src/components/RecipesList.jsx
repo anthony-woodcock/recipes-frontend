@@ -1,4 +1,5 @@
 import React from 'react'
+import RecipeListItem from './RecipeListItem'
 
 function RecipesList (props) {
     const recipeListItems = props.recipes.map(recipe => {

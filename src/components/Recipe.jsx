@@ -1,23 +1,48 @@
-import React from 'react'
+import React, { Component } from 'react'
 import Ingredient from './Ingredient'
+import request from 'superagent'
 
-function Recipe (props) {
-    const recipe = props.recipe
-    const ingredients = props.recipe.ingredients.map((ingredient, index) => {
-        return <Ingredient key={index} ingredient={ingredient} />
-    })
+class Recipe extends Component {
 
-    return (
-        <div className="recipes-single">
-            <h2 className="title">{recipe.title}</h2>
-            <ul className="ingredients">
-                {ingredients}
-            </ul>
-            <div className="instructions">
-                {recipe.instructions}
+    constructor () {
+        super()
+
+        this.state = {
+            recipe: {}
+        }
+    }
+
+    componentDidMount() {
+        const self = this
+        const recipeId = this.props.match.params.recipeId
+
+        request.get(`http://localhost:3001/recipes/${recipeId}`).end((error, response) => {
+            if(!error){
+                self.setState({ recipe: response.body })
+            }
+        })
+    }
+
+    render () {
+        const recipe = this.state
+        const ingredients = this.state.map((ingredient, index) => {
+            return <Ingredient key={index} ingredient={ingredient} />
+        })
+    
+        return (
+            <div className="recipes-single">
+                <h2 className="title">{recipe.title}</h2>
+                <ul className="ingredients">
+                    {ingredients}
+                </ul>
+                <div className="instructions">
+                    {recipe.instructions}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+
 }
+
 
 export default Recipe

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Recipes.css'
 import RecipesList from './components/RecipesList'
 import Recipe from './components/Recipe'
+import { Route } from 'react-router-dom'
 const request = require('superagent');
 
 
@@ -23,11 +24,12 @@ class Recipes extends Component {
   }
 
   render(){
-    const recipe = this.state.recipes.length ? <Recipe recipe={this.state.recipes[0]}/> : ''
+    
     return(
       <div className="recipes-container">
-        {recipe}
+      
         <RecipesList recipes={this.state.recipes} />
+        <Route path="/recipes/:recipeId" component={Recipe}/>
       </div>
     )
   }

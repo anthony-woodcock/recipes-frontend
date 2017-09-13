@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 function RecipeListItem (props) {
     return (
         <div className="recipes-list-item">
-            <a href={'/recipes/' + props.recipe._id}>{props.recipe.name}</a>
+            <Link to={`/recipes/${props.recipe._id}`}>{props.recipe.name}</Link>
         </div>
     )
 }

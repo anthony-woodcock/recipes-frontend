@@ -1,13 +1,18 @@
 import React from 'react'
 
 function Ingredient (props) {
-    render () {
+
+    const ingredient = props.ingredient
+    
         return (
-            <div className="ingredients">
-                <li>{props.ingredient}</li>
+            <div>
+                <li>{ingredient.name}</li>
+                <li>{ingredient.quantity}</li>
+                <li>{ingredient.unit}</li>
             </div>
+
         )
-    }
+    
 }
 
 export default Ingredient

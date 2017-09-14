@@ -25,7 +25,6 @@ class Recipe extends Component {
     }
 
     componentDidMount() {
-        console.log(this)
         const self = this
         const recipeId = this.props.match.params.recipeId
 
@@ -37,7 +36,6 @@ class Recipe extends Component {
     }
 
     render () {
-        console.log('inside render')
         const recipe = this.state.recipe
         const ingredients = recipe.ingredients && recipe.ingredients.map((ingredient, index) => {
             return <Ingredient key={index} ingredient={ingredient} />
